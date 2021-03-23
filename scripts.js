@@ -48,32 +48,31 @@ var figure = () => {
     _start: start.charCodeAt(0)-65,
     _end: end.charCodeAt(0)-65
   };
-  rowPart.from =(rowPart._start <= rowPart._end) ? rowPart._start:rowPart._end;
-  rowPart.to = rowPart._start>=rowPart._end?rowPart._start:rowPart._end;
+ // console.log(rowPart._end);
+  var temp1 =(rowPart._start <= rowPart._end) ? rowPart._start:rowPart._end;
+  var temp2 = rowPart._start>=rowPart._end?rowPart._start:rowPart._end;
+  //console.log(rowPart.from );
 
   //stack_over flow
   const fun = {
     _start:parseInt(start[1]),
     _end:parseInt(end[1])
   };
-  fun.from = fun._start <= fun._end ? fun._start : fun._end;
-  fun.to = fun._start >= fun._end ? fun._start : fun._end;
+  var a = fun._start <= fun._end ? fun._start : fun._end;
+  var b = fun._start >= fun._end ? fun._start : fun._end;
   var allRows = document.querySelectorAll("div.row")
 
-
- 
   var index = fun._start <= fun._end ? rowPart._start :rowPart._end;
   var myCol = allRows[index].querySelectorAll("div.col");
-  for (let col=fun.from-1;col<=fun.to-1;col++)
+  for (let col=a-1;col<=b-1;col++)
   {
     myCol[col].style.backgroundColor = "blue"
   }
-  for (let row = rowPart.from; row<=rowPart.to;row++) 
+  for (let row =temp1;row<=temp2;row++) 
   {
-    var col1=allRows[row].querySelectorAll("div.col")[fun.to-1];
+     col1=allRows[row].querySelectorAll("div.col")[b-1];
     col1.style.backgroundColor="blue";
   }
-  console.log('Abhijeet');
+  console.log('figure');
 }
-
 goBtn.onclick = figure;
